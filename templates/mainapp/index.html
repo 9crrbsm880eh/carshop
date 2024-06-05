@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="articles-container">
+               {% for article in articles %}
+            <div class="article-card">
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="card-img-top fixed-size-img">
+                <div class="article-details">
+                    <h3>{{ article.title }}</h3>
+                    <p>Автор: {{ article.author }}</p>
+                    <p>Дата публикации: {{ article.created_at }}</p>
+                    <p>{{ article.content|truncatewords:30 | striptags  }}</p>
+                    <button onclick="window.location.href='{% url 'article' article.id %}'">Читать далее</button>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="pagination">
+            {% if is_paginated %}
+                <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                    <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+            </span>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="map" style="width: 100%; height: 400px;"></div>
+            </div>
+            <div class="col-md-6">
+                <h2>Контактная информация</h2>
+                <p><strong>Адрес:</strong> ул. Примерная, д. 1, Москва, Россия</p>
+                <p><strong>Телефон:</strong> +7 (495) 123-45-67</p>
+                <p><strong>Email:</strong> info@example.com</p>
+                <p><strong>Часы работы:</strong> Пн-Пт: 9:00 - 18:00</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+
+        function init() {
+            var myMap = new ymaps.Map("map", {
+                center: [55.751574, 37.573856], // Координаты центра карты
+                zoom: 10
+            });
+
+            var myPlacemark = new ymaps.Placemark([55.751574, 37.573856], {
+                hintContent: 'Наш офис',
+                balloonContent: 'Мы здесь!'
+            });
+
+            myMap.geoObjects.add(myPlacemark);
+        }
+    </script>
+{% endblock %}

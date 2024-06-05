@@ -1,0 +1,50 @@
+<div class="sidebar p-3 bg-light rounded">
+    <!-- Форма авторизации -->
+    {% if not user.is_authenticated %}
+        <h2 class="h5">Авторизация</h2>
+        <form action="{% url 'login' %}" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Имя пользователя:</label>
+                <input type="text" id="username" name="username" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Пароль:</label>
+                <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Войти</button>
+        </form>
+    {% endif %}
+    <!-- Фильтры по категориям статей -->
+    {% if article_categories %}
+        <h2 class="h5 mt-4">Фильтры</h2>
+        <ul class="list-group">
+            {% for category in article_categories %}
+                <li class="list-group-item"><a href="{% url 'category_filter' category.id %}" class="text-decoration-none">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <!-- Фильтры по категориям статей -->
+    {% if product_categories %}
+        <h2 class="h5 mt-4">Фильтры</h2>
+        <ul class="list-group">
+            {% for category in product_categories %}
+                <li class="list-group-item"><a href="{% url 'category_product_filter' category.id %}" class="text-decoration-none">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <!-- Популярные товары -->
+    <h2 class="h5 mt-4">Популярные товары</h2>
+    {% if popular_product %}
+        <div class="card mb-3">
+            <img src="{{ popular_product.image.url }}" class="card-img-top" alt="{{ popular_product.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ popular_product.name }}</h5>
+                <p class="card-text">{{ popular_product.description }}</p>
+                <a href="{% url 'product_detail' popular_product.id %}" class="btn btn-outline-secondary mr-2">Подробнее</a>
+            </div>
+        </div>
+    {% else %}
+        <p>Популярных товаров пока нет.</p>
+    {% endif %}
+</div>
+

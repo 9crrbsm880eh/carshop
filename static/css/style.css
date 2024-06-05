@@ -1,0 +1,283 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+}
+
+header {
+    background-color: #fff;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.banner {
+    width: 100%;
+    height: 200px;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+nav {
+    text-align: center;
+    margin-top: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    margin: 0 15px;
+}
+
+.sidebar {
+    background-color: #f8f9fa; /* Светлый фон */
+    border-radius: 0.25rem; /* Закругленные углы */
+    padding: 1rem; /* Внутренние отступы */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Тень для объема */
+}
+
+.sidebar h2 {
+    font-size: 1.25rem; /* Размер заголовка */
+    margin-bottom: 1rem; /* Отступ снизу */
+    color: #343a40; /* Цвет текста */
+}
+
+.sidebar form {
+    margin-bottom: 1.5rem; /* Отступ снизу */
+}
+
+.sidebar form label {
+    font-weight: 500; /* Полужирный текст */
+    color: #495057; /* Цвет текста */
+}
+
+.sidebar form input[type="text"],
+.sidebar form input[type="password"] {
+    border: 1px solid #ced4da; /* Граница */
+    border-radius: 0.25rem; /* Закругленные углы */
+    padding: 0.5rem; /* Внутренние отступы */
+    width: 100%; /* Ширина 100% */
+    box-sizing: border-box; /* Включаем бордер в ширину */
+}
+
+.sidebar form button[type="submit"] {
+    background-color: #ff7f0e; /* Рыжий цвет фона */
+    color: #fff; /* Цвет текста */
+    border: none; /* Убираем границу */
+    padding: 0.5rem 1rem; /* Внутренние отступы */
+    border-radius: 0.25rem; /* Закругленные углы */
+    cursor: pointer; /* Указатель курсора */
+    transition: background-color 0.3s ease; /* Плавный переход цвета фона */
+}
+
+.sidebar form button[type="submit"]:hover {
+    background-color: #e66a00; /* Цвет фона при наведении */
+}
+
+.sidebar ul {
+    padding-left: 0; /* Убираем отступы слева */
+    list-style-type: none; /* Убираем маркеры списка */
+}
+
+.sidebar ul li {
+    margin-bottom: 0.5rem; /* Отступ снизу */
+}
+
+.sidebar ul li a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #ff7f0e; /* Рыжий цвет текста */
+    transition: color 0.3s ease; /* Плавный переход цвета текста */
+}
+
+.sidebar ul li a:hover {
+    color: #e66a00; /* Цвет текста при наведении */
+}
+
+.content {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.article-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.article-card img {
+    width: 30%;
+    object-fit: cover;
+}
+
+.article-details {
+    padding: 15px;
+    width: 70%;
+}
+
+.article-details h3 {
+    margin-top: 0;
+}
+
+.article-details button {
+    background-color: #ff7f0e; /* Рыжий цвет фона */
+    color: #fff; /* Цвет текста */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.pagination .step-links a, .pagination .step-links span {
+    margin: 0 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.pagination .step-links .current {
+    font-weight: bold;
+}
+
+.product-card, .article-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+button {
+    background-color: #ff7f0e; /* Рыжий цвет фона */
+    color: #fff; /* Цвет текста */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e66a00; /* Цвет фона при наведении */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.main-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-content h1.display-4 {
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+.main-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.main-content hr {
+    border-top: 1px solid #ddd;
+}
+
+.main-content .btn {
+    font-size: 1rem;
+    background-color: #ff7f0e; /* Рыжий цвет фона */
+    color: #fff; /* Цвет текста */
+    border: none;
+}
+
+.main-content .btn:hover {
+    background-color: #e66a00; /* Цвет фона при наведении */
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card .card-body {
+    padding: 15px;
+}
+
+.card .card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.card .card-text {
+    font-size: 1rem;
+}
+
+.fa-star, .fa-star-o {
+    color: #ffd700;
+}
+
+#star-rating-add .fa {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.modal-header, .modal-footer {
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+
+/* style.css */
+.product-card {
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+}
+
+.btn-warning {
+    background-color: #FFA500;
+    border-color: #FFA500;
+}
+
+.btn-warning:hover {
+    background-color: #FF8C00;
+    border-color: #FF8C00;
+}
+.fixed-size-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}

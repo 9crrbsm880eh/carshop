@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="container mt-5">
+        <div class="main-content">
+            {% if article %}
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <img src="{{ article.image }}" class="img-fluid rounded" alt="{{ article.title }}">
+                    </div>
+                    <div class="col-md-8">
+                        <h1 class="display-4">{{ article.title }}</h1>
+                        <p class="text-muted">
+                            <small>Дата публикации: {{ article.created_at|date:"d.m.Y" }}</small><br>
+                            Автор: <a href="#">{{ article.author.username }}</a>
+                        </p>
+                        <hr>
+                        <p>{{ article.content | safe }}</p>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if request.user.is_authenticated %}
+                <div class="mb-4">
+                    <button type="button" class="btn btn-outline-secondary mr-2" data-toggle="modal" data-target="#commentModal">Добавить комментарий</button>
+                    <a href="{% url 'edit_article' article.id %}" class="btn btn-outline-secondary mr-2">Редактировать</a>
+                    <form method="post" action="{% url 'delete_article' article.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Вы уверены, что хотите удалить эту статью?')">Удалить</button>
+                    </form>
+                </div>
+            {% endif %}
+
+            <div class="mt-5">
+                <h2>Комментарии</h2>
+                {% for comment in comments %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ comment.author.username }}</h5>
+                            <p class="card-text">{{ comment.content }}</p>
+                            <div class="mb-2">
+                                {% for i in "12345" %}
+                                    <span class="fa fa-star{% if i > comment.rating %}-o{% endif %}"></span>
+                                {% endfor %}
+                            </div>
+                            <p class="card-text"><small class="text-muted">Дата комментария: {{ comment.created_at|date:"d.m.Y" }}</small></p>
+                            {% if request.user == comment.author or request.user.is_superuser %}
+                                <form method="post" action="{% url 'comment_delete' comment.pk %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger">Удалить</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>Комментариев пока нет. Будьте первым, кто оставит комментарий!</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

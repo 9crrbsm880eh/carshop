@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="container" style="align-items: center">
+        <h1>404 - Страница не найдена</h1>
+        <p>Извините, страница, которую вы искали, не существует.</p>
+        <img src="{% static 'images/not_found.jpg' %}" alt="Страница не существует" style="max-width: 1000px;">
+    </div>
+{% endblock %}
