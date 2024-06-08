@@ -91,16 +91,21 @@ class ArticleDetailView(DetailView):
 
         return context
 
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
+
+class AddCommentView(View):
+    def post(self, request, article_id, *args, **kwargs):
+        article = Article.objects.get(id=article_id)
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.article = self.object
+            comment.article = article
             comment.author = request.user
             comment.save()
-            return redirect('article', pk=self.object.pk)
-        return self.render_to_response(self.get_context_data(comment_form=form))
+            return redirect('article', pk=article_id)
+        return HttpResponseForbidden()
+
+
+
 
 
 class CommentDeleteView(View):
@@ -114,4 +119,3 @@ class CommentDeleteView(View):
 
 class NotFoundView(TemplateView):
     template_name = '404_template.html'
-
