@@ -21,11 +21,8 @@ class LoginView(View):
         form = LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
-            print(username)
             password = form.cleaned_data.get('password')
-            print(password)
             user = authenticate(request, username=username, password=password)
-            print(user)
             if user is not None:
                 login(request, user)
                 return redirect(reverse('home'))  # Перенаправление на главную страницу после успешного входа
