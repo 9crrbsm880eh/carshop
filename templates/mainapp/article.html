@@ -24,11 +24,13 @@
             {% if request.user.is_authenticated %}
                 <div class="mb-4">
                     <button type="button" class="btn btn-outline-secondary mr-2" data-toggle="modal" data-target="#commentModal">Добавить комментарий</button>
-                    <a href="{% url 'edit_article' article.id %}" class="btn btn-outline-secondary mr-2">Редактировать</a>
-                    <form method="post" action="{% url 'delete_article' article.id %}" style="display: inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Вы уверены, что хотите удалить эту статью?')">Удалить</button>
-                    </form>
+                    {% if request.user.is_staff or user.id == article.author_id %}
+                        <a href="{% url 'edit_article' article.id %}" class="btn btn-outline-secondary mr-2">Редактировать</a>
+                        <form method="post" action="{% url 'delete_article' article.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Вы уверены, что хотите удалить эту статью?')">Удалить</button>
+                        </form>
+                    {% endif %}
                 </div>
             {% endif %}
 
@@ -56,6 +58,42 @@
                 {% empty %}
                     <p>Комментариев пока нет. Будьте первым, кто оставит комментарий!</p>
                 {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="commentModalLabel">Добавить комментарий</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'add_comment' article.id %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="commentContent">Комментарий</label>
+                            <textarea class="form-control" id="commentContent" name="content" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="rating">Рейтинг</label>
+                            <select class="form-control" id="rating" name="rating">
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1</option>
+
+
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-outline-danger">Отправить</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
